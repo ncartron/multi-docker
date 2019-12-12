@@ -1,0 +1,25 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t cartron/react-test -f ./client/Dockerfile.dev ./client
+
+
+script:
+  - docker run -e CI=true cartron/react-test npm test
+
+after_success:
+  - docker build -t cartron/multi-client ./client
+  - docker build -t cartron/multi-nginx ./nginx
+  - docker build -t cartron/multi-server ./server
+  - docker build -t cartron/multi-worker ./worker
+
+  # Login to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Push images to Docker Hub
+  - docker push cartron/multi-client
+  - docker push cartron/multi-nginx
+  - docker push cartron/multi-server
+  - docker push cartron/multi-worker
