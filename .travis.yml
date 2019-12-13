@@ -24,3 +24,17 @@ after_success:
   - docker push cartron/multi-nginx
   - docker push cartron/multi-server
   - docker push cartron/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-3"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-3-244142604025"
+  bucket_path: "docker-multi"
+  access_key_id:
+    secure: "jl+0tMxui2dP5EgHznMH9kxZDglv0h1Q47k1jSuH4JsWuUqGesnD6jUoM5YBRWB2Qj2jZDdZpCDme+iMmN0f+nw8qcpBkWbvDugVFqChZ1stSzMCFAFL+QUxxzoht6wfOj3iKv7JZi7rRnmbXFA6RPzT8UDkWv40//QrOHoRRlu9Q2ojasv645+YTd0suv+TzekDUnClc/odPLAX+kFbMrbzNs9RpgPpSKetPsloUuqm5oC+GBxrSL49VPa9cAOumKBC986sF74+ZsI9zoH3z2qcmnajL9k1lxa24tJBDJc11+wSW2E3q3cJSPdyxIhyLFTLimIQBwH1N4yGGRHKOjjPnn0s2tSgJ0JADQWNsylxRV+9k0NO30NQpcL3ywzf5Ya3etFJoDnBZF+uQZQT5Mw419kyzlU0LIHEHZmbf8GqOGTlOLJ0QUwSJAyuEXZgkiVT5Do0MwzZ1ZjAi8gn8JteiCnBCDbSpZ5lzy4JJreTl9C3v3qZQ4ZyT2gJh2O16EwZE8BiJ1a8NpWuqs+JY8sIS73ZlS0bLDrpeFg+jcc9obM6b42K32cKjDmALkcqfRLUOj/IlkI5KX/x5dZHV3K0ZtmxjHoGBSYKKT/GVvPUyd95/9t9aEu0Qu2+/m17ZDcDZ4NNEpblJQMhNWnpoS+z7SsacEQF7spTaYurcI8="
+  secret_access_key:
+    secure: "TFLS7WwTIavY70KVMv7wE68jRG6ugAZOjjo4lTR0bHNAqAxahZpt1NbbEOz0FlDrafrsEQva/GPov+8IuYac/NGWSqTp/VxhUcsklE9KrVeNBxopZLaqzEs5XJV5EIE4HiQYw3XKu7JMRFOuRIh9gCNuNES6dk7WNUaJz+MdIEFiWmfBwSmiYX9N4NME66n2Wr6kvtfuiJO0CySCJA7CoNMTR71TdXMcs3ZIy/itcYwmdvX1GDGMNILIWPFkrh5wDNpiAAGVoMQKAmkhJ7h9VWzVCkrNZCFdDqDFNoPeUP3RezYtnLmNTQQ8kCVezJdm6Y8M6tR9yxYsujIbGv3mLcPOH+kqn5+L1YHl7IbffaT1LtfMPfyKX9TJP3MOwILRkz2WRE6tk0FPuUOeMWZd+L/+bcb6pPsNBpl/tKOIYGw+3sza/we5EJPrYoXXgB71Z3lmM+a71ku1pTP5bJ/d1Pfs9xL9TvuYZHA+AT+6pJpLDHfXzv4dlTtiHZtre+fHsD7oHpmJFLAsmG/2BoOgTCXRItkIJj5UkacbjIF8K8VCldgoQr6Tv60hv3eA3/Vsxlbl6LkVbVGWHq4Y+qUZ6ZK7frrhXvXHse0GVLFkGA0OQbe+MYKvjaZ4u229r19Eu0x9U/cUc9DmFFpZNl+cgcV0ooz3I9hikP1x2esN9to="
+  on:
+    branch: master
